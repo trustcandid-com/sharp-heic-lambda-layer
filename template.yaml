@@ -5,11 +5,15 @@ Description: Lambda Layer providing sharp with HEIC support
 Parameters:
   OrganizationId:
     Default: none
-    Description: With the principal set to *, grant permission to all accounts in the specified organization.
+    Description:
+      With the principal set to *, grant permission to all accounts in the
+      specified organization.
     Type: String
   Principal:
     Default: account
-    Description: An account ID, or * to grant permission to use the layer to all AWS accounts.
+    Description:
+      An account ID, or * to grant permission to use the layer to all AWS
+      accounts.
     Type: String
   LayerName:
     Default: sharp-heic
@@ -17,8 +21,8 @@ Parameters:
     Type: String
 
 Conditions:
-  NoOrganizationId: !Equals [ !Ref OrganizationId, none ]
-  UseDefaultPrincipal: !Equals [ !Ref Principal, account ]
+  NoOrganizationId: !Equals [!Ref OrganizationId, none]
+  UseDefaultPrincipal: !Equals [!Ref Principal, account]
 
 Resources:
   SharpHEICLayer:
@@ -30,7 +34,9 @@ Resources:
       CompatibleRuntimes:
         - nodejs14.x
         - nodejs16.x
-      LicenseInfo: 'MIT'
+        - nodejs18.x
+        - nodejs20.x
+      LicenseInfo: "MIT"
       RetentionPolicy: Retain
     Metadata:
       BuildMethod: makefile
